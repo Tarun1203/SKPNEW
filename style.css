@@ -4,6 +4,14 @@ body {
   background: #fff8f0;
   color: #333;
 }
+.english-text {
+  font-family: 'Poppins', sans-serif;
+}
+
+.kannada-text {
+  font-family: 'Noto Sans Kannada', sans-serif;
+}
+
 
 header {
   background: maroon;
