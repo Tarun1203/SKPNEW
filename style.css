@@ -136,7 +136,7 @@ button:hover {
 .profile-img {
   width: 160px;
   height: 160px;
-  object-fit: contain;
+  object-fit: fit;
   border-radius: 15px;
   border: 4px solid maroon;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
