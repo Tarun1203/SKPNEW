@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Simple Upload Test</title>
+  <meta charset="UTF-8">
+  <title>Admin Photo Uploader</title>
 </head>
 <body>
-  <h2>Upload an image</h2>
+  <h2>Upload to Google Drive</h2>
   <form id="uploadForm">
     <input type="file" id="imageFile" accept="image/*" required>
     <button type="submit">Upload</button>
   </form>
-  <div id="uploadStatus"></div>
+  <div id="uploadStatus">No image uploaded yet.</div>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
@@ -18,7 +19,6 @@
       e.preventDefault();
       const file = document.getElementById("imageFile").files[0];
       const reader = new FileReader();
-
       reader.onload = function() {
         const base64 = reader.result;
         document.getElementById("uploadStatus").innerText = "Uploading...";
@@ -40,7 +40,6 @@
           document.getElementById("uploadStatus").innerText = "❌ Error: " + err;
         });
       };
-
       reader.readAsDataURL(file);
     });
   </script>
