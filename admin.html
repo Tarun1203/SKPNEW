@@ -1,98 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Panel – Kannikaparameshwari Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background: #f7f5f0;
-      color: #333;
-    }
-    header {
-      background: maroon;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      color: maroon;
-      margin-bottom: 20px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    input[type="file"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    button {
-      background-color: maroon;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background-color: darkred;
-    }
-    #uploadStatus {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px dashed #ccc;
-      border-radius: 10px;
-      background: #fafafa;
-      text-align: center;
-    }
-    #uploadStatus img {
-      max-width: 200px;
-      margin-top: 15px;
-      border: 2px solid maroon;
-      border-radius: 10px;
-    }
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #999;
-    }
-  </style>
+  <title>Simple Upload Test</title>
 </head>
 <body>
-
-  <header>
-    <h1>📤 Admin Photo Uploader</h1>
-  </header>
-
-  <div class="container">
-    <h2>Upload to Google Drive</h2>
-    <form id="uploadForm">
-      <input type="file" id="imageFile" accept="image/*" required>
-      <button type="submit">Upload</button>
-    </form>
-    <div id="uploadStatus">No image uploaded yet.</div>
-  </div>
-
-  <footer>
-    &copy; 2025 SKPVN Alumni | Powered by Chittam Vamana Enterprises
-  </footer>
+  <h2>Upload an image</h2>
+  <form id="uploadForm">
+    <input type="file" id="imageFile" accept="image/*" required>
+    <button type="submit">Upload</button>
+  </form>
+  <div id="uploadStatus"></div>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
@@ -100,17 +17,11 @@
     document.getElementById("uploadForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const file = document.getElementById("imageFile").files[0];
-
-      if (file.size > 2 * 1024 * 1024) {
-        alert("Please upload images smaller than 2MB.");
-        return;
-      }
-
       const reader = new FileReader();
+
       reader.onload = function() {
         const base64 = reader.result;
-
-        document.getElementById("uploadStatus").innerHTML = "⏳ Uploading...";
+        document.getElementById("uploadStatus").innerText = "Uploading...";
 
         fetch(scriptURL, {
           method: "POST",
@@ -119,23 +30,19 @@
         })
         .then(res => res.text())
         .then(url => {
-          if (url.startsWith("http")) {
-            document.getElementById("uploadStatus").innerHTML = `
-              ✅ <strong>Uploaded Successfully!</strong><br>
-              <a href="${url}" target="_blank">${url}</a><br>
-              <img src="${url}" alt="Uploaded Image">
-            `;
-          } else {
-            document.getElementById("uploadStatus").innerHTML = "❌ Upload failed: " + url;
-          }
+          document.getElementById("uploadStatus").innerHTML = `
+            ✅ Uploaded Successfully:<br>
+            <a href="${url}" target="_blank">${url}</a><br>
+            <img src="${url}" style="max-width:300px; margin-top:10px;">
+          `;
         })
         .catch(err => {
-          document.getElementById("uploadStatus").innerHTML = "❌ Network error: " + err;
+          document.getElementById("uploadStatus").innerText = "❌ Error: " + err;
         });
       };
+
       reader.readAsDataURL(file);
     });
   </script>
-
 </body>
 </html>
