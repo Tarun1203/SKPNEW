@@ -8,8 +8,8 @@
   <style>
     .articles-container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       gap: 20px;
       padding: 20px;
     }
@@ -18,17 +18,53 @@
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      width: 300px;
+      width: 90%;
+      max-width: 600px;
+      cursor: pointer;
     }
     .article-title {
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       color: maroon;
     }
     .article-author {
       font-size: 0.9em;
       color: #555;
       margin-bottom: 10px;
+    }
+    .article-content {
+      display: none;
+      font-size: 0.95em;
+    }
+    .article-card.open .article-content {
+      display: block;
+      margin-top: 10px;
+    }
+    form {
+      background: #fff;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: maroon;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkred;
     }
   </style>
 </head>
@@ -39,22 +75,28 @@
   </header>
 
   <div class="articles-container">
-    <div class="article-card">
+    <div class="article-card" onclick="this.classList.toggle('open')">
       <div class="article-title">ಅನ್ನದಾನದ ಮಹತ್ವ</div>
       <div class="article-author">✍️ ಮಂಜುನಾಥ ಎಸ್</div>
-      <p>ಅನ್ನದಾನವೆ ಎಲ್ಲ ದಾನಗಳಿಗಿಂತ ಶ್ರೇಷ್ಠವಾಗಿದೆ. ಇದು ಬಡವರಿಗೆ ಆಶ್ರಯವನ್ನು ನೀಡುತ್ತದೆ...</p>
+      <div class="article-content">
+        ಅನ್ನದಾನವೆ ಎಲ್ಲ ದಾನಗಳಿಗಿಂತ ಶ್ರೇಷ್ಠವಾಗಿದೆ. ಇದು ಬಡವರಿಗೆ ಆಶ್ರಯವನ್ನು ನೀಡುತ್ತದೆ...
+      </div>
     </div>
 
-    <div class="article-card">
+    <div class="article-card" onclick="this.classList.toggle('open')">
       <div class="article-title">The Spirit of Vasavi</div>
       <div class="article-author">✍️ Ramesh N</div>
-      <p>Vasavi's teachings inspire peace and service. This article reflects on her message in today's times...</p>
+      <div class="article-content">
+        Vasavi's teachings inspire peace and service. This article reflects on her message in today's times...
+      </div>
     </div>
 
-    <div class="article-card">
+    <div class="article-card" onclick="this.classList.toggle('open')">
       <div class="article-title">Hostel Memories</div>
       <div class="article-author">✍️ Prakash R</div>
-      <p>From morning prayers to late-night discussions, our hostel life shaped us for the better...</p>
+      <div class="article-content">
+        From morning prayers to late-night discussions, our hostel life shaped us for the better...
+      </div>
     </div>
   </div>
 
@@ -70,6 +112,24 @@
       <li><strong>Ramachandra Setty Siddam</strong> – Poem: "ಗಮನದಲ್ಲದ ಹಾದಿ"</li>
     </ul>
     <p>If you'd like your article or poem added here, please contact the committee at <a href="mailto:alumni@vasavinilaya.org">alumni@vasavinilaya.org</a></p>
+  </section>
+
+  <!-- Submission Form -->
+  <section class="section">
+    <h2>📬 Submit Your Article or Poem</h2>
+    <form onsubmit="submitArticle(event)">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Title of Article/Poem" required>
+      <textarea placeholder="Write your article or poem here..." rows="6" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      function submitArticle(e) {
+        e.preventDefault();
+        alert("Your article has been submitted! (Note: This is a static placeholder, no backend yet.)");
+      }
+    </script>
   </section>
 
   <footer>
