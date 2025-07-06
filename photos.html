@@ -6,22 +6,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    .gallery-section {
+      padding: 20px;
+    }
+    .gallery-title {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: maroon;
+    }
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      padding: 20px;
+      gap: 20px;
     }
-    .gallery img {
+    .gallery-card {
       width: 200px;
+      text-align: center;
+    }
+    .gallery-card img {
+      width: 100%;
       border-radius: 10px;
       border: 3px solid maroon;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s;
     }
-    .gallery img:hover {
+    .gallery-card img:hover {
       transform: scale(1.05);
+    }
+    .caption {
+      margin-top: 8px;
+      font-size: 0.9em;
     }
     #lightbox {
       display: none;
@@ -39,6 +55,13 @@
       border-radius: 10px;
       border: 5px solid gold;
     }
+    #admin-upload {
+      margin: 30px auto;
+      text-align: center;
+    }
+    #admin-upload input {
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
@@ -47,16 +70,53 @@
     <h2>📷 ಚಿತ್ರ ಗ್ಯಾಲರಿ | Photo Gallery</h2>
   </header>
 
-  <div class="gallery">
-    <img src="images/photo1.jpg" alt="Photo 1" onclick="openLightbox(this.src)">
-    <img src="images/photo2.jpg" alt="Photo 2" onclick="openLightbox(this.src)">
-    <img src="images/photo3.jpg" alt="Photo 3" onclick="openLightbox(this.src)">
-    <img src="images/photo4.jpg" alt="Photo 4" onclick="openLightbox(this.src)">
-    <!-- Add more images as needed -->
+  <!-- 🔐 Admin Upload Tool (Password Protected) -->
+  <div id="admin-upload">
+    <div id="upload-login">
+      <input type="password" id="uploadPass" placeholder="Enter admin password">
+      <button onclick="checkUploadLogin()">Login</button>
+    </div>
+    <div id="upload-form" style="display: none;">
+      <h3>Upload New Photo (Static Demo)</h3>
+      <input type="file" id="imageUpload">
+      <input type="text" placeholder="Caption (optional)">
+      <button onclick="alert('Upload feature not connected yet!')">Upload</button>
+    </div>
   </div>
 
+  <!-- 🔖 Category: Events -->
+  <section class="gallery-section">
+    <div class="gallery-title">🎉 Events</div>
+    <div class="gallery">
+      <div class="gallery-card">
+        <img src="images/photo1.jpg" onclick="openLightbox(this.src)" alt="Event 1">
+        <div class="caption">Vasavi Jayanthi Celebration</div>
+      </div>
+      <div class="gallery-card">
+        <img src="images/photo2.jpg" onclick="openLightbox(this.src)" alt="Event 2">
+        <div class="caption">Annual Day Function 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔖 Category: Hostel Life -->
+  <section class="gallery-section">
+    <div class="gallery-title">🏠 Hostel Life</div>
+    <div class="gallery">
+      <div class="gallery-card">
+        <img src="images/photo3.jpg" onclick="openLightbox(this.src)" alt="Life 1">
+        <div class="caption">Study Hall - Night Session</div>
+      </div>
+      <div class="gallery-card">
+        <img src="images/photo4.jpg" onclick="openLightbox(this.src)" alt="Life 2">
+        <div class="caption">Morning Prayer at Hostel</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Preview -->
   <div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Enlarged Image">
+    <img id="lightbox-img" src="" alt="Zoomed Photo">
   </div>
 
   <script>
@@ -66,6 +126,16 @@
     }
     function closeLightbox() {
       document.getElementById("lightbox").style.display = "none";
+    }
+
+    function checkUploadLogin() {
+      const pass = document.getElementById("uploadPass").value;
+      if (pass === "vasavi2025") {
+        document.getElementById("upload-login").style.display = "none";
+        document.getElementById("upload-form").style.display = "block";
+      } else {
+        alert("Incorrect password!");
+      }
     }
   </script>
 
