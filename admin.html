@@ -121,11 +121,11 @@
         .then(res => res.text())
         .then(url => {
           if (url.startsWith("http")) {
-            document.getElementById("uploadStatus").innerHTML = `
-              ✅ <strong>Uploaded Successfully!</strong><br>
-              <a href="${url}" target="_blank">${url}</a><br>
-              <img src="${url}" alt="Uploaded Image">
-            `;
+         document.getElementById("uploadStatus").innerHTML = `
+  ✅ Uploaded Successfully!<br>
+  <a href="${url}" target="_blank">${url}</a><br>
+  <img src="${url}" style="max-width:200px; margin-top:10px; border:2px solid maroon;">
+`;
           } else {
             document.getElementById("uploadStatus").innerText = "❌ Upload failed: " + url;
           }
