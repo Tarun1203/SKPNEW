@@ -1,0 +1,40 @@
+<h3>📤 Upload Photo to Gallery</h3>
+<form id="uploadForm">
+  <input type="file" id="imageFile" accept="image/*" required>
+  <button type="submit">Upload</button>
+</form>
+<div id="uploadStatus"></div>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbzOU4NTWahSYBJBEzFoAkxFGLW6mF8hLKhRc52W_7n6e2EOCFMFEYiwsZiU6rENVSdgGQ/exec";
+
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const file = document.getElementById("imageFile").files[0];
+  const reader = new FileReader();
+  reader.onload = function() {
+    const base64 = reader.result;
+    fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "image=" + encodeURIComponent(base64)
+    })
+    .then(res => res.text())
+    .then(url => {
+      if (url.startsWith("http")) {
+        document.getElementById("uploadStatus").innerHTML = `
+          ✅ Uploaded Successfully!<br>
+          <a href="${url}" target="_blank">${url}</a><br>
+          <img src="${url}" style="max-width:200px; margin-top:10px; border: 3px solid maroon;">
+        `;
+      } else {
+        document.getElementById("uploadStatus").innerText = "❌ Upload failed: " + url;
+      }
+    })
+    .catch(error => {
+      document.getElementById("uploadStatus").innerText = "❌ Error: " + error;
+    });
+  };
+  reader.readAsDataURL(file);
+});
+</script>
