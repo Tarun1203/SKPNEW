@@ -30,11 +30,37 @@
         })
         .then(res => res.text())
         .then(url => {
-          document.getElementById("uploadStatus").innerHTML = `
-            ✅ Uploaded Successfully:<br>
-            <a href="${url}" target="_blank">${url}</a><br>
-            <img src="${url}" style="max-width:300px; margin-top:10px;">
-          `;
+         const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
+
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const file = document.getElementById("imageFile").files[0];
+  const reader = new FileReader();
+
+  reader.onload = function () {
+    const base64 = reader.result;
+    document.getElementById("uploadStatus").innerText = "Uploading...";
+
+    fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "image=" + encodeURIComponent(base64)
+    })
+    .then(res => res.text())
+    .then(url => {
+      document.getElementById("uploadStatus").innerHTML = `
+        ✅ Uploaded Successfully:<br>
+        <a href="${url}" target="_blank">${url}</a>
+      `;
+    })
+    .catch(err => {
+      document.getElementById("uploadStatus").innerText = "❌ Upload error: " + err;
+    });
+  };
+
+  reader.readAsDataURL(file);
+});
+
         })
         .catch(err => {
           document.getElementById("uploadStatus").innerText = "❌ Error: " + err;
