@@ -105,38 +105,50 @@
   </footer>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
 
-    document.getElementById("uploadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const file = document.getElementById("imageFile").files[0];
-      const reader = new FileReader();
-      reader.onload = function() {
-        const base64 = reader.result;
-        fetch(scriptURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: "image=" + encodeURIComponent(base64)
-        })
-        .then(res => res.text())
-        .then(url => {
-          if (url.startsWith("http")) {
-         document.getElementById("uploadStatus").innerHTML = `
-  ✅ Uploaded Successfully!<br>
-  <a href="${url}" target="_blank">${url}</a><br>
-  <img src="${url}" style="max-width:200px; margin-top:10px; border:2px solid maroon;">
-`;
-          } else {
-            document.getElementById("uploadStatus").innerText = "❌ Upload failed: " + url;
-          }
-        })
-        .catch(err => {
-          document.getElementById("uploadStatus").innerText = "❌ Network error: " + err;
-        });
-      };
-      reader.readAsDataURL(file);
+document.getElementById("uploadForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const file = document.getElementById("imageFile").files[0];
+
+  // Optional: Skip if too big
+  if (file.size > 2 * 1024 * 1024) {
+    alert("Please upload images smaller than 2MB.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function() {
+    const base64 = reader.result;
+
+    document.getElementById("uploadStatus").innerHTML = "⏳ Uploading...";
+
+    fetch(scriptURL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: "image=" + encodeURIComponent(base64)
+    })
+    .then(res => res.text())
+    .then(url => {
+      if (url.startsWith("http")) {
+        document.getElementById("uploadStatus").innerHTML = `
+          ✅ <strong>Uploaded Successfully!</strong><br>
+          <a href="${url}" target="_blank">${url}</a><br>
+          <img src="${url}" style="max-width:200px; margin-top:10px; border:2px solid maroon;">
+        `;
+      } else {
+        document.getElementById("uploadStatus").innerHTML = "❌ Upload failed: " + url;
+      }
+    })
+    .catch(err => {
+      document.getElementById("uploadStatus").innerHTML = "❌ Network error: " + err;
     });
-  </script>
+  };
+
+  reader.readAsDataURL(file);
+});
+</script>
+
 
 </body>
 </html>
