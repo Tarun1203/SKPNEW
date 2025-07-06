@@ -11,14 +11,12 @@
       background: #f7f5f0;
       color: #333;
     }
-
     header {
       background: maroon;
       color: white;
       padding: 20px;
       text-align: center;
     }
-
     .container {
       max-width: 600px;
       margin: 40px auto;
@@ -27,25 +25,21 @@
       border-radius: 15px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
-
     h2 {
       text-align: center;
       color: maroon;
       margin-bottom: 20px;
     }
-
     form {
       display: flex;
       flex-direction: column;
       gap: 15px;
     }
-
     input[type="file"] {
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 8px;
     }
-
     button {
       background-color: maroon;
       color: white;
@@ -56,11 +50,9 @@
       font-weight: 600;
       transition: background 0.3s ease;
     }
-
     button:hover {
       background-color: darkred;
     }
-
     #uploadStatus {
       margin-top: 20px;
       padding: 15px;
@@ -69,14 +61,12 @@
       background: #fafafa;
       text-align: center;
     }
-
     #uploadStatus img {
       max-width: 200px;
       margin-top: 15px;
       border: 2px solid maroon;
       border-radius: 10px;
     }
-
     footer {
       margin-top: 40px;
       text-align: center;
@@ -105,50 +95,47 @@
   </footer>
 
   <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
 
-document.getElementById("uploadForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const file = document.getElementById("imageFile").files[0];
+    document.getElementById("uploadForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const file = document.getElementById("imageFile").files[0];
 
-  // Optional: Skip if too big
-  if (file.size > 2 * 1024 * 1024) {
-    alert("Please upload images smaller than 2MB.");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function() {
-    const base64 = reader.result;
-
-    document.getElementById("uploadStatus").innerHTML = "⏳ Uploading...";
-
-    fetch(scriptURL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: "image=" + encodeURIComponent(base64)
-    })
-    .then(res => res.text())
-    .then(url => {
-      if (url.startsWith("http")) {
-        document.getElementById("uploadStatus").innerHTML = `
-          ✅ <strong>Uploaded Successfully!</strong><br>
-          <a href="${url}" target="_blank">${url}</a><br>
-          <img src="${url}" style="max-width:200px; margin-top:10px; border:2px solid maroon;">
-        `;
-      } else {
-        document.getElementById("uploadStatus").innerHTML = "❌ Upload failed: " + url;
+      if (file.size > 2 * 1024 * 1024) {
+        alert("Please upload images smaller than 2MB.");
+        return;
       }
-    })
-    .catch(err => {
-      document.getElementById("uploadStatus").innerHTML = "❌ Network error: " + err;
+
+      const reader = new FileReader();
+      reader.onload = function() {
+        const base64 = reader.result;
+
+        document.getElementById("uploadStatus").innerHTML = "⏳ Uploading...";
+
+        fetch(scriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: "image=" + encodeURIComponent(base64)
+        })
+        .then(res => res.text())
+        .then(url => {
+          if (url.startsWith("http")) {
+            document.getElementById("uploadStatus").innerHTML = `
+              ✅ <strong>Uploaded Successfully!</strong><br>
+              <a href="${url}" target="_blank">${url}</a><br>
+              <img src="${url}" alt="Uploaded Image">
+            `;
+          } else {
+            document.getElementById("uploadStatus").innerHTML = "❌ Upload failed: " + url;
+          }
+        })
+        .catch(err => {
+          document.getElementById("uploadStatus").innerHTML = "❌ Network error: " + err;
+        });
+      };
+      reader.readAsDataURL(file);
     });
-  };
-
-  reader.readAsDataURL(file);
-});
-</script>
-
+  </script>
 
 </body>
 </html>
