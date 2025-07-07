@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Admin Photo Uploader</title>
@@ -10,12 +8,15 @@
       text-align: center;
       padding: 50px;
     }
+
     form {
       margin-bottom: 20px;
     }
+
     input[type="file"] {
       padding: 10px;
     }
+
     button {
       padding: 10px 20px;
       background: maroon;
@@ -24,9 +25,11 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     button:hover {
       background: darkred;
     }
+
     #uploadStatus {
       margin-top: 20px;
       padding: 15px;
@@ -37,6 +40,7 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     #uploadStatus img {
       margin-top: 15px;
       max-width: 300px;
@@ -45,46 +49,3 @@
     }
   </style>
 </head>
-<body>
-  <h2>Upload to Google Drive</h2>
-  <form id="uploadForm">
-    <input type="file" id="imageFile" accept="image/*" required>
-    <button type="submit">Upload</button>
-  </form>
-  <div id="uploadStatus">No image uploaded yet.</div>
-
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbx2lLbSf-thOpKf0HGP-n53GbtlahZb33ldFwLO2eROuaA-gZZqRwCoFtfgUrvZQDJgDw/exec";
-
-    document.getElementById("uploadForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const file = document.getElementById("imageFile").files[0];
-      const reader = new FileReader();
-
-      reader.onload = function () {
-        const base64 = reader.result;
-        document.getElementById("uploadStatus").innerText = "Uploading...";
-
-        fetch(scriptURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: "image=" + encodeURIComponent(base64)
-        })
-        .then(res => res.text())
-        .then(url => {
-          document.getElementById("uploadStatus").innerHTML = `
-            ✅ Uploaded Successfully!<br>
-            <a href="${url}" target="_blank">${url}</a><br>
-            <img src="${url}" alt="Uploaded Image">
-          `;
-        })
-        .catch(err => {
-          document.getElementById("uploadStatus").innerText = "❌ Upload error: " + err;
-        });
-      };
-
-      reader.readAsDataURL(file);
-    });
-  </script>
-</body>
-</html>
