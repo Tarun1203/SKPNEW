@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Photo Gallery with Delete</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>📸 Uploaded Photo Gallery</h2>
+  <div id="gallery">Loading gallery...</div>
+
+  <script>
+    const SHEET_JSON_URL = "https://opensheet.elk.sh/YOUR_SHEET_ID/Sheet1"; // Replace this
+
+    fetch(SHEET_JSON_URL)
+      .then(response => response.json())
+      .then(data => {
+        const galleryDiv = document.getElementById("gallery");
+        if (data.length === 0) {
+          galleryDiv.innerHTML = "No images uploaded yet.";
+          return;
+        }
+
+        galleryDiv.innerHTML = "";
+        data.forEach((entry, index) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <img src="${entry.url}" alt="Uploaded Image">
+            <p>${entry.caption || ""}</p>
+            <p><small>By: ${entry.uploaded_by || "Unknown"}</small></p>
+            <button onclick="deleteImage('${entry.url}', ${index})">🗑 Delete</button>
+          `;
+          galleryDiv.appendChild(card);
+        });
+      })
+      .catch(error => {
+        document.getElementById("gallery").innerText = "Failed to load gallery.";
+        console.error(error);
+      });
+
+    function deleteImage(url, index) {
+      if (confirm("Are you sure you want to delete this image?")) {
+        console.log("Delete requested for:", url);
+        alert("🗑 Delete request sent (simulation).");
+      }
+    }
+  </script>
+</body>
+</html>
