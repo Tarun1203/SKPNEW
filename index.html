@@ -6,14 +6,121 @@
   <title>Shree Kannikaparameshwari Vidyarthi Nilaya</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans Kannada', 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #222;
+    }
+
+    header {
+      background: maroon;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+
+    .ticker {
+      background: gold;
+      color: maroon;
+      padding: 8px;
+      font-weight: bold;
+    }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      background: #8b0000;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      background: #600000;
+    }
+
+    .hostel-background img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .main-content {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .center-img {
+      max-width: 250px;
+      width: 100%;
+      border: 5px solid maroon;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    .founder-secretary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .founder-secretary div {
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border: 4px solid #444;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      margin-top: 50px;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+      .center-img {
+        max-width: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <h1>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು</h1>
     <p class="english-text">Welcome to the Alumni Meet 2025</p>
     <p class="kannada-text">ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನಕ್ಕೆ ಸುಸ್ವಾಗತ</p>
-    <div class="ticker">🙏 Alumni Meet 2025 | Stay Connected | Jai Vasavi 🙏</div> <br>
-   
+    <div class="ticker">🙏 Alumni Meet 2025 | Stay Connected | Jai Vasavi 🙏</div>
     <nav>
       <a href="index.html">ಮುಖಪುಟ</a>
       <a href="articles.html">ಲೇಖನಗಳು</a>
@@ -23,9 +130,8 @@
       <a href="management.html">ನಿರ್ವಹಣೆ</a>
       <a href="contact.html">ಸಂಪರ್ಕಿಸಿ</a>
       <a href="info.html">ಮಾಹಿತಿ</a>
-      <a href="admin.html">Admin</a>
-      <a href="admin.html" style="padding: 10px 20px; background: maroon; color: white; text-decoration: none; border-radius: 8px;">🔧 Admin Upload</a>
-  <a href="gallery.html" style="padding: 10px 20px; background: green; color: white; text-decoration: none; border-radius: 8px; margin-left: 10px;">🖼 View Gallery</a>
+      <a href="admin.html">🔧 Admin Upload</a>
+      <a href="gallery.html" style="background: green;">🖼 View Gallery</a>
     </nav>
   </header>
 
@@ -36,7 +142,7 @@
 
   <main class="main-content">
     <section class="image-block">
-     <img src="images/ganesha.jpg" alt="Lord Ganesha" class="center-img framed">
+      <img src="images/ganesha.jpg" alt="Lord Ganesha" class="center-img">
     </section>
 
     <section class="founder-secretary">
