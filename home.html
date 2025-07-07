@@ -3,27 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <title>Home - SKPVN</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans Kannada', sans-serif;
+      background: #fff9f2;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .framed {
+      max-width: 200px;
+      border: 5px solid maroon;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .profile-box {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .profile {
+      text-align: center;
+    }
+
+    .profile img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #333;
+      object-fit: cover;
+    }
+
+    .welcome {
+      background: #ffe8c1;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
 <body>
-  <section style="text-align: center; padding: 40px;">
-    <h2>🙏 ಸ್ವಾಗತ 🙏</h2>
-    <p>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯದ ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳ ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನದ ಮಾಹಿತಿಗೆ ಸುಸ್ವಾಗತ!</p>
-    <p>ಈ ಪುಟದ ಮೂಲಕ ನಿಮ್ಮ ನೆನಪಿನ ಕ್ಷಣಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ, ಚಿತ್ರಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿ ಮತ್ತು ನಿಮ್ಮ ಸ್ನೇಹಿತರೊಂದಿಗೆ ಸಂಪರ್ಕದಲ್ಲಿರಿ.</p>
-    <p>📅 2025 ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನ – ರಾಯಚೂರಿನಲ್ಲಿ ಎದುರು ನೋಡಲಾಗುತ್ತಿದೆ!</p>
 
-  <img src="images/ganesha.jpg" alt="Lord Ganesha" style="max-width:200px; border: 5px solid maroon; border-radius: 10px;"><br><br>
-  
-  <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
-    <div style="text-align:center;">
-      <img src="images/founder.jpg" alt="Founder" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid #444;"><br>
-      <p>ಸ್ಥಾಪಕ: ಸನ್ನ ನಾಗಯ್ಯ ಸೆಟ್ಟಿ</p>
+  <div class="welcome" id="welcome-message">
+    <!-- Dynamic Welcome Message -->
+  </div>
+
+  <img id="ganesha-img" class="framed" alt="Lord Ganesha" src="images/ganesha.jpg">
+
+  <div class="profile-box">
+    <div class="profile">
+      <img id="founder-img" alt="Founder" src="images/founder.jpg">
+      <p id="founder-name">ಸ್ಥಾಪಕ: ಸನ್ನ ನಾಗಯ್ಯ ಸೆಟ್ಟಿ</p>
     </div>
-    <div style="text-align:center;">
-      <img src="images/secretary.jpg" alt="Secretary" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid #444;"><br>
-      <p>ಕಾರ್ಯದರ್ಶಿ: ಡಾ. ರಾಮಕೃಷ್ಣ</p>
+    <div class="profile">
+      <img id="secretary-img" alt="Secretary" src="images/secretary.jpg">
+      <p id="secretary-name">ಕಾರ್ಯದರ್ಶಿ: ಡಾ. ರಾಮಕೃಷ್ಣ</p>
     </div>
   </div>
-  </section>
+
+  <script>
+    document.getElementById("welcome-message").innerText = "🙏 ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನಕ್ಕೆ ಹೃದಯಪೂರ್ವಕ ಸ್ವಾಗತ 🙏";
+  </script>
 </body>
 </html>
