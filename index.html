@@ -3,34 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shree Kannikaparameshwari Vidyarthi Nilaya</title>
+  <title>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      font-family: 'Noto Sans Kannada', 'Poppins', sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #222;
+      font-family: 'Poppins', 'Noto Sans Kannada', sans-serif;
+      background: linear-gradient(to right, #fff3e0, #ffe0e0);
+      color: #333;
     }
 
     header {
-      background: maroon;
+      background: rgba(128, 0, 0, 0.9);
       color: white;
-      padding: 20px 10px;
+      padding: 20px 15px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0;
     }
 
     .ticker {
-      background: gold;
+      background: #ffd700;
       color: maroon;
-      padding: 8px;
       font-weight: bold;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 5px;
     }
 
     nav {
-      margin-top: 10px;
+      margin-top: 15px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -38,63 +47,64 @@
     }
 
     nav a {
+      background: #660000;
       color: white;
-      background: #8b0000;
-      text-decoration: none;
       padding: 10px 15px;
-      border-radius: 5px;
-      font-weight: 600;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
     }
 
     nav a:hover {
-      background: #600000;
+      background: #aa0000;
     }
 
-    .hostel-background img {
-      width: 100%;
-      height: auto;
+    #loader {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      background: white;
+      padding: 20px 30px;
+      border: 2px solid maroon;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      z-index: 2000;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #loader::before {
+      content: "🔄";
       display: block;
-    }
-
-    .main-content {
-      text-align: center;
-      padding: 30px 10px;
-    }
-
-    .center-img {
-      max-width: 250px;
-      width: 100%;
-      border: 5px solid maroon;
-      border-radius: 12px;
-      margin-bottom: 30px;
-    }
-
-    .founder-secretary {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-    }
-
-    .founder-secretary div {
-      text-align: center;
-    }
-
-    .profile-img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border: 4px solid #444;
-      border-radius: 50%;
+      font-size: 2rem;
       margin-bottom: 10px;
+      animation: spin 2s linear infinite;
+    }
+
+    iframe#content-frame {
+      width: 100%;
+      height: calc(100vh - 240px);
+      border: none;
+      border-top: 2px solid maroon;
+      border-bottom: 2px solid maroon;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
 
     footer {
       background: #222;
       color: white;
       text-align: center;
-      padding: 15px 10px;
-      margin-top: 50px;
+      padding: 12px;
+      font-size: 0.9rem;
+      position: sticky;
+      bottom: 0;
     }
 
     audio {
@@ -102,15 +112,11 @@
     }
 
     @media (max-width: 600px) {
+      h1 {
+        font-size: 1.2rem;
+      }
       nav {
         flex-direction: column;
-      }
-      .profile-img {
-        width: 120px;
-        height: 120px;
-      }
-      .center-img {
-        max-width: 180px;
       }
     }
   </style>
@@ -118,46 +124,25 @@
 <body>
   <header>
     <h1>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು</h1>
-    <p class="english-text">Welcome to the Alumni Meet 2025</p>
-    <p class="kannada-text">ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನಕ್ಕೆ ಸುಸ್ವಾಗತ</p>
+    <p>Welcome to the Alumni Meet 2025</p>
+    <p>ಅಲೂಮ್ನಿ ಸಮ್ಮೇಳನಕ್ಕೆ ಹೃದಯಪೂರ್ವಕ ಸ್ವಾಗತ</p>
     <div class="ticker">🙏 Alumni Meet 2025 | Stay Connected | Jai Vasavi 🙏</div>
     <nav>
-      <a href="index.html">ಮುಖಪುಟ</a>
-      <a href="articles.html">ಲೇಖನಗಳು</a>
-      <a href="alumni.html">ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳು</a>
-      <a href="photos.html">ಚಿತ್ರಗಳು</a>
-      <a href="hostels.html">ಹಾಸ್ಟೆಲ್ ಮಾಹಿತಿ</a>
-      <a href="management.html">ನಿರ್ವಹಣೆ</a>
-      <a href="contact.html">ಸಂಪರ್ಕಿಸಿ</a>
-      <a href="info.html">ಮಾಹಿತಿ</a>
-      <a href="admin.html">🔧 Admin Upload</a>
-      <a href="gallery.html" style="background: green;">🖼 View Gallery</a>
+      <a href="#" onclick="loadPage('home.html')">ಮುಖಪುಟ</a>
+      <a href="#" onclick="loadPage('articles.html')">ಲೇಖನಗಳು</a>
+      <a href="#" onclick="loadPage('alumni.html')">ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳು</a>
+      <a href="#" onclick="loadPage('photos.html')">ಚಿತ್ರಗಳು</a>
+      <a href="#" onclick="loadPage('hostels.html')">ಹಾಸ್ಟೆಲ್ ಮಾಹಿತಿ</a>
+      <a href="#" onclick="loadPage('management.html')">ನಿರ್ವಹಣೆ</a>
+      <a href="#" onclick="loadPage('contact.html')">ಸಂಪರ್ಕಿಸಿ</a>
+      <a href="#" onclick="loadPage('info.html')">ಮಾಹಿತಿ</a>
+      <a href="#" onclick="loadPage('admin.html')">🔧 Admin Upload</a>
+      <a href="#" onclick="loadPage('gallery.html')" style="background: green;">🖼 View Gallery</a>
     </nav>
-    <iframe id="content-frame" src="home.html"></iframe>
-
   </header>
 
-  <!-- Background Hostel Photo -->
-  <div class="hostel-background">
-    <img src="images/hostel.jpg" alt="Hostel Background">
-  </div>
-
-  <main class="main-content">
-    <section class="image-block">
-      <img src="images/ganesha.jpg" alt="Lord Ganesha" class="center-img">
-    </section>
-
-    <section class="founder-secretary">
-      <div>
-        <img src="images/founder.jpg" alt="Founder" class="profile-img">
-        <p>ಸ್ಥಾಪಕ: ಸನ್ನ ನಾಗಯ್ಯ ಸೆಟ್ಟಿ</p>
-      </div>
-      <div>
-        <img src="images/secretary.jpg" alt="Secretary" class="profile-img">
-        <p>ಕಾರ್ಯದರ್ಶಿ: ಡಾ. ರಾಮಕೃಷ್ಣ</p>
-      </div>
-    </section>
-  </main>
+  <div id="loader">Loading...</div>
+  <iframe id="content-frame" src="home.html" onload="hideLoader()"></iframe>
 
   <footer>
     <p>© 2025 Published by Alumni of SKPVN Raichur</p>
@@ -166,5 +151,18 @@
   <audio autoplay loop>
     <source src="audio.mp3" type="audio/mpeg">
   </audio>
+
+  <script>
+    function loadPage(page) {
+      document.getElementById("loader").style.display = "block";
+      document.getElementById("content-frame").src = page;
+    }
+
+    function hideLoader() {
+      setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+      }, 300);
+    }
+  </script>
 </body>
 </html>
