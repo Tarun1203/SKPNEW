@@ -158,52 +158,31 @@ function handleSubmit(event) {
   const type = document.getElementById('type').value;
   const content = document.getElementById('content').value.trim();
 
-  const container = document.getElementById('articles');
-
-  fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ author, title, type, content })
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === "success") {
-      alert("✅ Submitted successfully!");
-
-      let section = document.querySelector(`[data-author='${author}']`);
-      if (!section) {
-        section = document.createElement('div');
-        section.className = 'author-section';
-        section.setAttribute('data-author', author);
-        section.innerHTML = `<h3>${author} <span class="article-tag">Author</span></h3>`;
-        container.appendChild(section);
-      }
-
-      const button = document.createElement('button');
-      button.className = 'collapsible';
-      button.innerHTML = `${type === 'article' ? '📘 Essay' : '📝 Poem'}: ${title} <span class="article-tag">${type === 'article' ? 'ಲೇಖನ | Article' : 'ಕವನ | Poem'}</span>`;
-      const contentDiv = document.createElement('div');
-      contentDiv.className = 'content';
-      contentDiv.innerHTML = `<pre>${content}</pre>`;
-
-      section.appendChild(button);
-      section.appendChild(contentDiv);
-
-      button.addEventListener('click', () => {
-        button.classList.toggle('active');
-        contentDiv.classList.toggle('open');
-      });
-
-      event.target.reset();
-    } else {
-      alert("❌ Error: " + data.message);
-    }
-  })
-  .catch(err => {
-    alert("❌ Network error: " + err.message);
+  fetch('https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec', {
+    method: 'POST',
+    mode: 'no-cors', // Important for web app without CORS headers
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      author,
+      title,
+      type,
+      content
+    })
+  }).then(() => {
+    alert('✅ Submitted successfully!');
+    document.getElementById('author').value = '';
+    document.getElementById('title').value = '';
+    document.getElementById('type').value = 'article';
+    document.getElementById('content').value = '';
+  }).catch((error) => {
+    console.error('❌ Error:', error);
+    alert('❌ Submission failed. Check script permissions or internet.');
   });
 }
 </script>
+
 
 </body>
 </html>
