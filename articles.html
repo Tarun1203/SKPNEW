@@ -148,28 +148,38 @@
 <footer>
   <p>© 2025 Published by Alumni of SKPVN Raichur</p>
 </footer>
-fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec", {
-  method: "POST",
-  body: JSON.stringify({ author, title, type, content }),
-  headers: {
-    "Content-Type": "application/json"
-  }
-})
-.then(res => res.text())
-.then(text => {
-  if (text.includes("Success")) {
-    alert("✅ Submitted and saved to Google Sheet!");
-    event.target.reset();
-    fetchArticlesFromSheet(); // Refresh display after successful submit
-  } else {
-    alert("❌ Submission failed: " + text);
-    console.error("Server response:", text);
-  }
-})
-.catch(err => {
-  console.error("Network error:", err);
-  alert("⚠️ Network error. Check connection or CORS settings.");
-});
+<script>
+function handleSubmit(event) {
+  event.preventDefault();
+  
+  const author = document.getElementById('author').value.trim();
+  const title = document.getElementById('title').value.trim();
+  const type = document.getElementById('type').value;
+  const content = document.getElementById('content').value.trim();
+
+  const data = { author, title, type, content }; // ✅ ensure we send this object
+
+  fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)  // ✅ ensure data is attached
+  })
+  .then(res => {
+    if (res.ok) {
+      alert("✅ Submitted and saved to Google Sheet!");
+      event.target.reset();
+    } else {
+      alert("❌ Failed to submit to Google Sheet.");
+    }
+  })
+  .catch(err => {
+    console.error("⚠️ Submission error:", err);
+    alert("⚠️ Error submitting. Try again.");
+  });
+}
+</script>
 
 
 
