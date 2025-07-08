@@ -5,39 +5,51 @@
   <title>ಲೇಖನಗಳು | Articles</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-   <style>
-    body {
-      font-family: 'Baloo Tamma 2', sans-serif;
-      background-color: #fff8f0;
-      padding: 2rem;
-      color: #333;
-    }
-    .collapsible {
-      background-color: #8e1515;
-      color: white;
-      cursor: pointer;
-      padding: 1rem 2rem;
-      width: 100%;
-      border: none;
-      text-align: left;
-      outline: none;
-      font-size: 1.1rem;
-      border-radius: 8px;
-    }
-    .active, .collapsible:hover {
-      background-color: #a32424;
-    }
-    .content {
-      padding: 1rem;
-      display: none;
-      overflow-y: auto;
-      background-color: #f9f1e7;
-      margin-top: 1rem;
-      border-radius: 8px;
-      max-height: 500px;
-      white-space: pre-wrap;
-    }
-  </style>
+    <style>
+  body {
+    font-family: 'Noto Sans Kannada', sans-serif;
+    background-color: #fff8f0;
+    padding: 2rem;
+    color: #333;
+  }
+  h2 {
+    margin-top: 2rem;
+    color: #600000;
+    text-align: center;
+  }
+  .collapsible {
+    background-color: #8e1515;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  .collapsible:hover {
+    background-color: #a32424;
+  }
+  .active {
+    background: #4a0f0f;
+  }
+  .content {
+    padding: 1rem;
+    display: none;
+    overflow-y: auto;
+    background-color: #f9f1e7;
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    max-height: 500px;
+    white-space: pre-line;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  }
+</style>
 </head>
 <body>
 
@@ -135,15 +147,15 @@
 </div>
 
 <script>
-  const coll = document.querySelector('.collapsible');
-  const content = document.querySelector('.content');
-  coll.addEventListener('click', () => {
-    coll.classList.toggle('active');
-    if (content.style.display === 'block') {
-      content.style.display = 'none';
-    } else {
-      content.style.display = 'block';
-    }
+  document.addEventListener('DOMContentLoaded', () => {
+    const collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle('active');
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      });
+    });
   });
 </script>
 
