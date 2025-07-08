@@ -164,7 +164,6 @@ function handleSubmit(event) {
     section.innerHTML = `<h3>${author} <span class="article-tag">Author</span></h3>`;
     container.appendChild(section);
   }
-
   const button = document.createElement('button');
   button.className = 'collapsible';
   button.innerHTML = `${type === 'article' ? '📘 Essay' : '📝 Poem'}: ${title} <span class="article-tag">${type === 'article' ? 'ಲೇಖನ | Article' : 'ಕವನ | Poem'}</span>`;
