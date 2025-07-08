@@ -225,6 +225,60 @@ function loadArticles() {
 
 window.addEventListener('DOMContentLoaded', loadArticles);
 </script>
+  <script>
+async function loadArticlesFromSheet() {
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec");
+    const data = await res.json();
+
+    const container = document.getElementById("articles");
+    container.innerHTML = "";
+
+    const authorsMap = {};
+
+    data.forEach(entry => {
+      const { author, title, type, content } = entry;
+      if (!authorsMap[author]) {
+        authorsMap[author] = [];
+      }
+      authorsMap[author].push({ title, type, content });
+    });
+
+    Object.keys(authorsMap).forEach(author => {
+      const section = document.createElement("div");
+      section.className = "author-section";
+      section.setAttribute("data-author", author);
+      section.innerHTML = `<h3>${author} <span class="article-tag">Author</span></h3>`;
+
+      authorsMap[author].forEach(item => {
+        const button = document.createElement("button");
+        button.className = "collapsible";
+        button.innerHTML = `${item.type === 'article' ? '📘 Essay' : '📝 Poem'}: ${item.title} <span class="article-tag">${item.type === 'article' ? 'ಲೇಖನ | Article' : 'ಕವನ | Poem'}</span>`;
+
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "content";
+        contentDiv.innerHTML = `<pre>${item.content}</pre>`;
+
+        button.addEventListener('click', () => {
+          button.classList.toggle('active');
+          contentDiv.classList.toggle('open');
+        });
+
+        section.appendChild(button);
+        section.appendChild(contentDiv);
+      });
+
+      container.appendChild(section);
+    });
+
+  } catch (err) {
+    console.error("❌ Failed to load articles:", err);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', loadArticlesFromSheet);
+</script>
+
 
 
 
