@@ -148,70 +148,29 @@
 <footer>
   <p>© 2025 Published by Alumni of SKPVN Raichur</p>
 </footer>
-
-<script>
-const API_URL = "https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec";
-
-function displayArticles(data) {
-  const container = document.getElementById("articles");
-  container.innerHTML = ""; // Clear existing
-
-  const grouped = {};
-
-  data.forEach(entry => {
-    if (!grouped[entry.author]) {
-      grouped[entry.author] = [];
-    }
-    grouped[entry.author].push(entry);
-  });
-
-  Object.keys(grouped).forEach(author => {
-    const section = document.createElement("div");
-    section.className = "author-section";
-    section.setAttribute("data-author", author);
-    section.innerHTML = `<h3>${author} <span class="article-tag">Author</span></h3>`;
-
-    grouped[author].forEach(item => {
-      const button = document.createElement("button");
-      button.className = "collapsible";
-      button.innerHTML = `${item.type === 'article' ? '📘 Essay' : '📝 Poem'}: ${item.title} <span class="article-tag">${item.type === 'article' ? 'ಲೇಖನ | Article' : 'ಕವನ | Poem'}</span>`;
-
-      const contentDiv = document.createElement("div");
-      contentDiv.className = "content";
-      contentDiv.innerHTML = `<pre>${item.content}</pre>`;
-
-      button.addEventListener("click", () => {
-        button.classList.toggle("active");
-        contentDiv.classList.toggle("open");
-      });
-
-      section.appendChild(button);
-      section.appendChild(contentDiv);
-    });
-
-    container.appendChild(section);
-  });
-}
-
-function fetchArticlesFromSheet() {
-  fetch(API_URL)
-    .then(response => response.json())
-    .then(data => displayArticles(data))
-    .catch(err => console.error("❌ Fetch error:", err));
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  fetchArticlesFromSheet(); // Fetch on load
-
-  document.querySelectorAll('.collapsible').forEach(button => {
-    const content = button.nextElementSibling;
-    button.addEventListener('click', () => {
-      button.classList.toggle('active');
-      content.classList.toggle('open');
-    });
-  });
+fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec", {
+  method: "POST",
+  body: JSON.stringify({ author, title, type, content }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+})
+.then(res => res.text())
+.then(text => {
+  if (text.includes("Success")) {
+    alert("✅ Submitted and saved to Google Sheet!");
+    event.target.reset();
+    fetchArticlesFromSheet(); // Refresh display after successful submit
+  } else {
+    alert("❌ Submission failed: " + text);
+    console.error("Server response:", text);
+  }
+})
+.catch(err => {
+  console.error("Network error:", err);
+  alert("⚠️ Network error. Check connection or CORS settings.");
 });
-</script>
+
 
 
 </body>
