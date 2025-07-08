@@ -5,7 +5,7 @@
   <title>ಲೇಖನಗಳು | Articles</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-   <style>
+    <style>
     body {
       font-family: 'Noto Sans Kannada', sans-serif;
       background-color: #fff8f0;
@@ -42,7 +42,7 @@
       position: absolute;
       right: 20px;
       top: 50%;
-      transform: translateY(-50%) rotate(0deg);
+      transform: translateY(-50%);
       transition: transform 0.3s ease;
     }
 
@@ -67,6 +67,21 @@
     .content.open {
       max-height: 2000px;
       padding: 1rem;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      background: #7a0000;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -165,12 +180,10 @@
 ನಿರ್ದೇಶಕರು (ಸಂಶೋಧನಾ ಮತ್ತು ಅಭಿವೃದ್ಧಿ ವಿಭಾಗ)  
 ರಾಜೀವ್‌ ಗಾಂಧಿ ಆರೋಗ್ಯ ವಿಜ್ಞಾನಗಳ ವಿಶ್ವವಿದ್ಯಾಲಯ, ಕರ್ನಾಟಕ, ಬೆಂಗಳೂರು  
 </pre>
-
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".collapsible");
-
     buttons.forEach(button => {
       button.addEventListener("click", () => {
         button.classList.toggle("active");
