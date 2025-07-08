@@ -5,6 +5,24 @@
   <meta charset="UTF-8">
   <title>SKPVN - Alumni Portal</title>
   <style>
+      .horizontal-scroll-container {
+      background: #fff2dc;
+      color: #8e1515;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .horizontal-scroll {
+      display: inline-block;
+      animation: scroll-left 30s linear infinite;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -26,6 +44,29 @@
       height: 90vh;
       border: none;
     }
+    
+body {
+  font-family: 'Baloo Tamma 2', sans-serif;
+  margin: 0;
+  background: #fff8f0;
+  color: #2e2e2e;
+}
+header, footer {
+  background: #8e1515;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+.section {
+  padding: 2rem;
+  text-align: center;
+}
+.image-center {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto;
+}
   </style>
 </head>
 <body>
@@ -34,6 +75,30 @@
   <h2>Shree Kannikaparameshwari Vidyarthi Nilaya, Raichur</h2>
     <h3>ಸ್ಮೃತಿ ಸಂಚಿಕೆ</h3>
 </header>
+  
+<div class="horizontal-scroll-container">
+  <div class="horizontal-scroll" id="bulletin-messages">
+    <!-- Messages will be dynamically inserted here -->
+  </div>
+</div>
+
+<section class="section">
+  <img src="images/hostel.jpg" alt="Hostel Photo" class="image-center" />
+</section>
+
+<script>
+  const messages = [
+    { en: "🎉 Welcome to the 2025 Alumni Meet", kn: "🎉 2025 ಪುರಾತನ ವಿದ್ಯಾರ್ಥಿಗಳ ಸಮಾವೇಶಕ್ಕೆ ಸ್ವಾಗತ" },
+    { en: "📍 Venue: G.P.S Residency & Restaurant - Mantralaya", kn: "📍 ಸ್ಥಳ: ಜಿ.ಪಿ.ಎಸ್ ರೆಸಿಡೆನ್ಸಿ, ಮಂತ್ರಾಲಯ" },
+    { en: "📞 Contact: 7204071733", kn: "📞 ಸಂಪರ್ಕಿಸಿ: 7204071733" },
+    { en: "🙏 Jai Vasavi Matha", kn: "🙏 ಜಯ ವಾಸವಿ ಮಾತೆ" },
+    { en: "🎶 Kanikaparameshwari Bhajane will be sung live!", kn: "🎶 ಕನಿಕಾಪರಮೇಶ್ವರಿ ಭಜನೆ ನೇರವಾಗಿ ಹಾಡಲಾಗುತ್ತದೆ!" },
+    { en: "💌 Designed by Tarun Chettam", kn: "💌 ವಿನ್ಯಾಸ: ತರುಣ್ ಚೆಟ್ಟಂ" }
+  ];
+
+  const container = document.getElementById("bulletin-messages");
+  const scrollText = messages.map(msg => `${msg.en} - ${msg.kn}`).join(" • ");
+  container.innerHTML = scrollText;
   <nav>
     <a href="#" onclick="loadPage('home.html')">ಮುಖಪುಟ</a>
     <a href="#" onclick="loadPage('articles.html')">ಲೇಖನಗಳು</a>
