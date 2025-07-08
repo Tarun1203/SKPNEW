@@ -160,25 +160,22 @@ function handleSubmit(event) {
 
   fetch('https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec', {
     method: 'POST',
-    mode: 'no-cors', // Important for web app without CORS headers
+    mode: 'no-cors', // Prevents CORS error but gives no response
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      author,
-      title,
-      type,
-      content
-    })
-  }).then(() => {
-    alert('✅ Submitted successfully!');
-    document.getElementById('author').value = '';
-    document.getElementById('title').value = '';
-    document.getElementById('type').value = 'article';
-    document.getElementById('content').value = '';
-  }).catch((error) => {
-    console.error('❌ Error:', error);
-    alert('❌ Submission failed. Check script permissions or internet.');
+    body: JSON.stringify({ author, title, type, content })
+  })
+  .then(() => {
+    alert("✅ Submitted successfully!");
+    document.getElementById("author").value = "";
+    document.getElementById("title").value = "";
+    document.getElementById("type").value = "article";
+    document.getElementById("content").value = "";
+  })
+  .catch(error => {
+    console.error("❌ Error:", error);
+    alert("❌ Failed to submit. Check internet or script deployment.");
   });
 }
 </script>
