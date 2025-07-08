@@ -1,11 +1,37 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="kn">
 <head>
   <meta charset="UTF-8">
   <title>SKPVN - Alumni Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-      .horizontal-scroll-container {
+    body {
+      font-family: 'Baloo Tamma 2', 'Poppins', sans-serif;
+      margin: 0;
+      background: #fff8f0;
+      color: #2e2e2e;
+    }
+
+    header, footer {
+      background: #8e1515;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .section {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .image-center {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 1rem auto;
+    }
+
+    .horizontal-scroll-container {
       background: #fff2dc;
       color: #8e1515;
       font-weight: bold;
@@ -15,106 +41,85 @@
       padding: 0.5rem 1rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .horizontal-scroll {
       display: inline-block;
       animation: scroll-left 30s linear infinite;
     }
+
     @keyframes scroll-left {
       0% { transform: translateX(100%); }
       100% { transform: translateX(-100%); }
     }
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+
     nav {
       background: maroon;
       padding: 10px;
       text-align: center;
     }
+
     nav a {
       color: white;
       margin: 0 10px;
       text-decoration: none;
       font-weight: bold;
+      cursor: pointer;
     }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
     iframe {
       width: 100%;
       height: 90vh;
       border: none;
     }
-    
-body {
-  font-family: 'Baloo Tamma 2', sans-serif;
-  margin: 0;
-  background: #fff8f0;
-  color: #2e2e2e;
-}
-header, footer {
-  background: #8e1515;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-.section {
-  padding: 2rem;
-  text-align: center;
-}
-.image-center {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 1rem auto;
-}
   </style>
 </head>
+
 <body>
   <header>
-  <h1>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು</h1>
-  <h2>Shree Kannikaparameshwari Vidyarthi Nilaya, Raichur</h2>
+    <h1>ಶ್ರೀ ಕನ್ನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು</h1>
+    <h2>Shree Kannikaparameshwari Vidyarthi Nilaya, Raichur</h2>
     <h1>ಸ್ಮೃತಿ ಸಂಚಿಕೆ</h1>
-</header>
-  
-<div class="horizontal-scroll-container">
-  <div class="horizontal-scroll" id="bulletin-messages">
-    <!-- Messages will be dynamically inserted here -->
+  </header>
+
+  <div class="horizontal-scroll-container">
+    <div class="horizontal-scroll" id="bulletin-messages">
+      <!-- Messages will be dynamically inserted -->
+    </div>
   </div>
-</div>
 
-<section class="section">
-  <img src="images/hostel.jpg" alt="Hostel Photo" class="image-center" />
-</section>
+  <section class="section">
+    <img src="images/hostel.jpg" alt="Hostel Photo" class="image-center" />
+  </section>
 
-<script>
-  const messages = [
-    { en: "🎉 Welcome to the 2025 Alumni Meet", kn: "🎉 2025 ಪುರಾತನ ವಿದ್ಯಾರ್ಥಿಗಳ ಸಮಾವೇಶಕ್ಕೆ ಸ್ವಾಗತ" },
-    { en: "📍 Venue: G.P.S Residency & Restaurant - Mantralaya", kn: "📍 ಸ್ಥಳ: ಜಿ.ಪಿ.ಎಸ್ ರೆಸಿಡೆನ್ಸಿ, ಮಂತ್ರಾಲಯ" },
-    { en: "📞 Contact: 7204071733", kn: "📞 ಸಂಪರ್ಕಿಸಿ: 7204071733" },
-    { en: "🙏 Jai Vasavi Matha", kn: "🙏 ಜಯ ವಾಸವಿ ಮಾತೆ" },
-    { en: "🎶 Kanikaparameshwari Bhajane will be sung live!", kn: "🎶 ಕನಿಕಾಪರಮೇಶ್ವರಿ ಭಜನೆ ನೇರವಾಗಿ ಹಾಡಲಾಗುತ್ತದೆ!" },
-    { en: "💌 Designed by Tarun Chettam", kn: "💌 ವಿನ್ಯಾಸ: ತರುಣ್ ಚೆಟ್ಟಂ" }
-  ];
-
-  const container = document.getElementById("bulletin-messages");
-  const scrollText = messages.map(msg => `${msg.en} - ${msg.kn}`).join(" • ");
-  container.innerHTML = scrollText;
-  </script>
-  <!-- ✅ Bilingual Navigation (One Line) -->
+  <!-- ✅ Bilingual Navigation with iframe trigger -->
   <nav>
-    <a href="home.html">🏠 ಮನೆ | Home</a>
-    <a href="hostels.html">🏨 ಹಾಸ್ಟೆಲ್ ವಿವರ | Hostel Details</a>
-    <a href="articles.html">📚 ಲೇಖನಗಳು | Articles</a>
-    <a href="info.html">📢 ಮಾಹಿತಿ | Info</a>
-    <a href="photos.html">📷 ಚಿತ್ರಗಳು | Gallery</a>
-    <a href="management.html">👨‍💼 ನಿರ್ವಹಣೆ | Management</a>
-    <a href="alumni.html">👥 ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳು | Alumni</a>
+    <a onclick="loadPage('home.html')">🏠 ಮನೆ | Home</a>
+    <a onclick="loadPage('hostel.html')">🏨 ಹಾಸ್ಟೆಲ್ ವಿವರ | Hostel Details</a>
+    <a onclick="loadPage('articles.html')">📚 ಲೇಖನಗಳು | Articles</a>
+    <a onclick="loadPage('info.html')">📢 ಮಾಹಿತಿ | Info</a>
+    <a onclick="loadPage('photos.html')">📷 ಚಿತ್ರಗಳು | Gallery</a>
+    <a onclick="loadPage('management.html')">👨‍💼 ನಿರ್ವಹಣೆ | Management</a>
+    <a onclick="loadPage('alumni.html')">👥 ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳು | Alumni</a>
   </nav>
-
 
   <iframe id="content-frame" src="home.html"></iframe>
 
   <script>
+    const messages = [
+      { en: "🎉 Welcome to the 2025 Alumni Meet", kn: "🎉 2025 ಪುರಾತನ ವಿದ್ಯಾರ್ಥಿಗಳ ಸಮಾವೇಶಕ್ಕೆ ಸ್ವಾಗತ" },
+      { en: "📍 Venue: G.P.S Residency & Restaurant - Mantralaya", kn: "📍 ಸ್ಥಳ: ಜಿ.ಪಿ.ಎಸ್ ರೆಸಿಡೆನ್ಸಿ, ಮಂತ್ರಾಲಯ" },
+      { en: "📞 Contact: 7204071733", kn: "📞 ಸಂಪರ್ಕಿಸಿ: 7204071733" },
+      { en: "🙏 Jai Vasavi Matha", kn: "🙏 ಜಯ ವಾಸವಿ ಮಾತೆ" },
+      { en: "🎶 Kanikaparameshwari Bhajane will be sung live!", kn: "🎶 ಕನಿಕಾಪರಮೇಶ್ವರಿ ಭಜನೆ ನೇರವಾಗಿ ಹಾಡಲಾಗುತ್ತದೆ!" },
+      { en: "💌 Designed by Tarun Chettam", kn: "💌 ವಿನ್ಯಾಸ: ತರುಣ್ ಚೆಟ್ಟಂ" }
+    ];
+    const container = document.getElementById("bulletin-messages");
+    container.innerHTML = messages.map(msg => `${msg.en} - ${msg.kn}`).join(" • ");
+
     function loadPage(page) {
       document.getElementById("content-frame").src = page;
     }
