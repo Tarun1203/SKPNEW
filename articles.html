@@ -67,19 +67,31 @@
     }
 
     .content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s ease;
-      background-color: #fdf6f0;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      padding: 0 1rem;
-    }
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  background-color: #fdf6f0;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
 
-    .content.open {
-      max-height: 1500px;
-      padding: 1rem;
-    }
+.content.open {
+  max-height: 300px; /* Limit height */
+  overflow-y: auto;  /* Allow vertical scroll */
+  padding: 1rem;
+  border: 1px solid #ddd;
+}
+
+/* Optional: custom scroll bar styling */
+.content.open::-webkit-scrollbar {
+  width: 6px;
+}
+.content.open::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 4px;
+}
+
 
     .content pre {
       white-space: pre-wrap;
