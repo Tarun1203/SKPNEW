@@ -1,63 +1,104 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hostel Details | SKPVN</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&display=swap" rel="stylesheet">
+  <title>Hostel Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Noto Sans Kannada', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background-color: #fff8f0;
       margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #8e1515;
+      padding: 1rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
       padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .photo-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .photo-card:hover {
+      transform: scale(1.02);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 3px solid #8e1515;
+    }
+
+    .caption {
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
       color: #333;
     }
 
-    h2 {
+    footer {
+      background-color: #8e1515;
+      color: white;
       text-align: center;
-      color: #861010;
-    }
-
-    .image-box {
-      text-align: center;
-      margin: 2rem 0;
-    }
-
-    .image-box img {
-      width: 95%;
-      max-width: 1000px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .hostel-description {
-      max-width: 900px;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      background: #fff9f3;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(128, 0, 0, 0.1);
+      padding: 1rem;
+      margin-top: 3rem;
+      border-radius: 0 0 10px 10px;
     }
   </style>
 </head>
 <body>
 
-  <h2>🏠 Hostel Details</h2>
+  <h1>🏨 Hostel Details</h1>
 
-  <div class="image-box">
-    <img src="images/hostel-photo.jpg" alt="Hostel Photo">
+  <div class="gallery">
+
+    <!-- Hostel Photo 1 -->
+    <div class="photo-card">
+      <img src="images/hostel-front.jpg" alt="Hostel Front View">
+      <div class="caption">Hostel Front View</div>
+    </div>
+
+    <!-- Hostel Photo 2 -->
+    <div class="photo-card">
+      <img src="images/dining-hall.jpg" alt="Dining Hall">
+      <div class="caption">Dining Hall</div>
+    </div>
+
+    <!-- Hostel Photo 3 -->
+    <div class="photo-card">
+      <img src="images/study-room.jpg" alt="Study Room">
+      <div class="caption">Study Room</div>
+    </div>
+
+    <!-- Hostel Photo 4 -->
+    <div class="photo-card">
+      <img src="images/hostel-room.jpg" alt="Hostel Room">
+      <div class="caption">Hostel Room</div>
+    </div>
+
+    <!-- Add more cards as needed -->
   </div>
 
-  <div class="hostel-description">
-    <p>
-      ಶ್ರೀ ಕನಿಕಾಪರಮೇಶ್ವರಿ ವಿದ್ಯಾರ್ಥಿ ನಿಲಯ, ರಾಯಚೂರು ಜಿಲ್ಲೆಯ ಹೃದಯಭಾಗದಲ್ಲಿರುವ ಪುರುಷ ವಿದ್ಯಾರ್ಥಿಗಳಿಗಾಗಿ ನಿರ್ಮಿಸಲಾದ ಒಂದು ವಿಶ್ವಾಸಾರ್ಹ ಹಾಗೂ ಶಿಸ್ತಿನ ಶಾಲಾ ವಾಸ್ತವ್ಯ ಆಧಾರಿತ ವಸತಿ ವ್ಯವಸ್ಥೆ ಆಗಿದೆ. ಈ ವಸತಿ ಗೃಹವು ಪವಿತ್ರತೆಯನ್ನು ಹಾಗೂ ಶಿಸ್ತನ್ನು ಮೆರೆದಿರುವಂತಹ ಸ್ಥಳವಾಗಿದ್ದು, ವಿವಿಧ ಶಾಲೆ-ಕಾಲೇಜುಗಳಲ್ಲಿ ವಿದ್ಯಾಭ್ಯಾಸ ಮಾಡುತ್ತಿರುವ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಶ್ರೇಷ್ಠ ಆಹಾರ, ನಿತ್ಯ ಪೂಜೆ, ಅಧ್ಯಾತ್ಮ ಚಟುವಟಿಕೆ ಮತ್ತು ಅಧ್ಯಯನಕ್ಕೆ ಸೂಕ್ತವಾದ ಪರಿಸರ ಒದಗಿಸುತ್ತದೆ.
-    </p>
-    <p>
-      ನಮ್ಮ ವಸತಿ ನಿಲಯವು ಕನ್ನಡಿಗರ ಸೇವಾ ಮನೋಭಾವನೆಯ ಪ್ರತೀಕವಾಗಿದ್ದು, ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಶ್ರದ್ಧೆ, ಶಿಸ್ತು ಹಾಗೂ ಸಮಾಜಮುಖೀ ಮನೋಭಾವವನ್ನು ಬೆಳೆಸುತ್ತದೆ. ವಿದ್ಯಾರ್ಥಿಗಳ ಉನ್ನತ ಭವಿಷ್ಯಕ್ಕೆ ನಾಂದಿ ಹಾಡುವಂತಹ ಈ ವಸತಿ ನಿಲಯವು ಎಲ್ಲಾ ಹಂತದ ಪೋಷಕರ ಭರವಸೆಗೆ ಪಾತ್ರವಾಗಿದೆ.
-    </p>
-  </div>
+  <footer>
+    © 2025 SKPVN Raichur | Hostel Committee
+  </footer>
 
 </body>
 </html>
