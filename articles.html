@@ -126,28 +126,30 @@
   </style>
 </head>
 <body>
+  <h1>✍️ ಲೇಖನಗಳು ಮತ್ತು ಕವನಗಳು | Articles & Poems</h1>
 
-<h1>✍️ ಲೇಖನಗಳು ಮತ್ತು ಕವನಗಳು | Articles & Poems</h1>
+  <form class="upload-form" onsubmit="handleSubmit(event)">
+    <h2>➕ ಲೇಖನ ಅಥವಾ ಕವನವನ್ನು ಸೇರಿಸಿ</h2>
+    <input type="text" id="author" placeholder="ಲೇಖಕರ ಹೆಸರು (Author Name)" required>
+    <input type="text" id="title" placeholder="ಶೀರ್ಷಿಕೆ (Title)" required>
+    <select id="type" required>
+      <option value="article">ಲೇಖನ | Article</option>
+      <option value="poem">ಕವನ | Poem</option>
+    </select>
+    <textarea id="content" placeholder="ಲೇಖನ ಅಥವಾ ಕವನದ ವಿಷಯ (Content)" rows="6" required></textarea>
+    <button type="submit">ಸಲ್ಲಿಸಿ | Submit</button>
+  </form>
 
-<!-- 🔼 Upload Form -->
-<form class="upload-form" onsubmit="handleSubmit(event)">
-  <h2>➕ ಲೇಖನ ಅಥವಾ ಕವನವನ್ನು ಸೇರಿಸಿ</h2>
-  <input type="text" id="author" placeholder="ಲೇಖಕರ ಹೆಸರು (Author Name)" required>
-  <input type="text" id="title" placeholder="ಶೀರ್ಷಿಕೆ (Title)" required>
-  <select id="type" required>
-    <option value="article">ಲೇಖನ | Article</option>
-    <option value="poem">ಕವನ | Poem</option>
-  </select>
-  <textarea id="content" placeholder="ಲೇಖನ ಅಥವಾ ಕವನದ ವಿಷಯ (Content)" rows="6" required></textarea>
-  <button type="submit">ಸಲ್ಲಿಸಿ | Submit</button>
-</form>
+  <div id="articles"></div>
 
-<!-- 🔽 Article Display Section -->
-<div id="articles"></div>
+  <footer>
+    <p>© 2025 Published by Alumni of SKPVN Raichur</p>
+  </footer>
 
-<footer>
-  <p>© 2025 Published by Alumni of SKPVN Raichur</p>
-</footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
 
   <script>
 window.addEventListener('DOMContentLoaded', () => {
