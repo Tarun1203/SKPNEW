@@ -1,146 +1,107 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ಚಿತ್ರಗಳು | Photo Gallery</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Hostel Photos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    .gallery-section {
-      padding: 20px;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffaf4;
+      margin: 0;
+      padding: 0;
     }
-    .gallery-title {
+
+    h1 {
       text-align: center;
-      font-size: 1.5em;
-      margin-bottom: 10px;
-      color: maroon;
+      color: #8e1515;
+      padding: 1.5rem 0;
+      background-color: #fff0e6;
+      margin: 0;
     }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+
+    .gallery-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
     }
-    .gallery-card {
-      width: 200px;
-      text-align: center;
+
+    .photo-box {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
     }
-    .gallery-card img {
+
+    .photo-box:hover {
+      transform: scale(1.03);
+    }
+
+    .photo-box img {
       width: 100%;
-      border-radius: 10px;
-      border: 3px solid maroon;
-      cursor: pointer;
-      transition: transform 0.2s;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 3px solid #8e1515;
     }
-    .gallery-card img:hover {
-      transform: scale(1.05);
-    }
+
     .caption {
-      margin-top: 8px;
-      font-size: 0.9em;
-    }
-    #lightbox {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      border: 5px solid gold;
-    }
-    #admin-upload {
-      margin: 30px auto;
+      padding: 0.8rem 1rem;
       text-align: center;
+      font-weight: 600;
+      color: #444;
     }
-    #admin-upload input {
-      margin: 10px;
+
+    footer {
+      text-align: center;
+      background-color: #8e1515;
+      color: white;
+      padding: 1rem;
+      font-size: 0.95rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h2>📷 ಚಿತ್ರ ಗ್ಯಾಲರಿ | Photo Gallery</h2>
-  </header>
+  <h1>📸 Hostel Photo Gallery</h1>
 
-  <!-- 🔐 Admin Upload Tool (Password Protected) -->
-  <div id="admin-upload">
-    <div id="upload-login">
-      <input type="password" id="uploadPass" placeholder="Enter admin password">
-      <button onclick="checkUploadLogin()">Login</button>
+  <div class="gallery-container">
+
+    <!-- Image Card 1 -->
+    <div class="photo-box">
+      <img src="images/hostel-front.jpg" alt="Hostel Front">
+      <div class="caption">Hostel Front View</div>
     </div>
-    <div id="upload-form" style="display: none;">
-      <h3>Upload New Photo (Static Demo)</h3>
-      <input type="file" id="imageUpload">
-      <input type="text" placeholder="Caption (optional)">
-      <button onclick="alert('Upload feature not connected yet!')">Upload</button>
+
+    <!-- Image Card 2 -->
+    <div class="photo-box">
+      <img src="images/hostel-room.jpg" alt="Hostel Room">
+      <div class="caption">Student Dormitory Room</div>
     </div>
+
+    <!-- Image Card 3 -->
+    <div class="photo-box">
+      <img src="images/study-room.jpg" alt="Study Room">
+      <div class="caption">Study Room Facility</div>
+    </div>
+
+    <!-- Image Card 4 -->
+    <div class="photo-box">
+      <img src="images/dining-hall.jpg" alt="Dining Hall">
+      <div class="caption">Dining Hall Area</div>
+    </div>
+
+    <!-- Add more image blocks as needed -->
+    
   </div>
-
-  <!-- 🔖 Category: Events -->
-  <section class="gallery-section">
-    <div class="gallery-title">🎉 Events</div>
-    <div class="gallery">
-      <div class="gallery-card">
-        <img src="images/photo1.jpg" onclick="openLightbox(this.src)" alt="Event 1">
-        <div class="caption">Vasavi Jayanthi Celebration</div>
-      </div>
-      <div class="gallery-card">
-        <img src="images/photo2.jpg" onclick="openLightbox(this.src)" alt="Event 2">
-        <div class="caption">Annual Day Function 2024</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 🔖 Category: Hostel Life -->
-  <section class="gallery-section">
-    <div class="gallery-title">🏠 Hostel Life</div>
-    <div class="gallery">
-      <div class="gallery-card">
-        <img src="images/photo3.jpg" onclick="openLightbox(this.src)" alt="Life 1">
-        <div class="caption">Study Hall - Night Session</div>
-      </div>
-      <div class="gallery-card">
-        <img src="images/photo4.jpg" onclick="openLightbox(this.src)" alt="Life 2">
-        <div class="caption">Morning Prayer at Hostel</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lightbox Preview -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="Zoomed Photo">
-  </div>
-
-  <script>
-    function openLightbox(src) {
-      document.getElementById("lightbox-img").src = src;
-      document.getElementById("lightbox").style.display = "flex";
-    }
-    function closeLightbox() {
-      document.getElementById("lightbox").style.display = "none";
-    }
-
-    function checkUploadLogin() {
-      const pass = document.getElementById("uploadPass").value;
-      if (pass === "vasavi2025") {
-        document.getElementById("upload-login").style.display = "none";
-        document.getElementById("upload-form").style.display = "block";
-      } else {
-        alert("Incorrect password!");
-      }
-    }
-  </script>
 
   <footer>
-    <p>© 2025 Published by Alumni of SKPVN Raichur</p>
+    © 2025 SKPVN Raichur | Hostel Committee
   </footer>
 
 </body>
