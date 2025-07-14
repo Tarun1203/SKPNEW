@@ -12,7 +12,7 @@
       color: #333;
     }
 
-    h1, h2 {
+    h1 {
       text-align: center;
       color: #600000;
     }
@@ -26,18 +26,8 @@
     }
 
     .author-section h3 {
-      margin: 0;
+      margin: 0 0 1rem;
       color: #5c2d91;
-    }
-
-    .article-tag {
-      display: inline-block;
-      background: #8e1515;
-      color: white;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      margin-left: 0.5rem;
     }
 
     .collapsible {
@@ -99,117 +89,68 @@
       padding: 1rem;
       border-radius: 10px;
     }
-
-    form.upload-form {
-      margin: 2rem auto;
-      padding: 1rem;
-      max-width: 600px;
-      border: 2px dashed #600000;
-      background: #fffefc;
-      border-radius: 12px;
-    }
-    form.upload-form input, form.upload-form select, form.upload-form textarea {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    form.upload-form button {
-      background-color: #600000;
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
-  <h1>✍️ ಲೇಖನಗಳು ಮತ್ತು ಕವನಗಳು | Articles & Poems</h1>
 
-  <form class="upload-form" onsubmit="handleSubmit(event)">
-    <h2>➕ ಲೇಖನ ಅಥವಾ ಕವನವನ್ನು ಸೇರಿಸಿ</h2>
-    <input type="text" id="author" placeholder="ಲೇಖಕರ ಹೆಸರು (Author Name)" required>
-    <input type="text" id="title" placeholder="ಶೀರ್ಷಿಕೆ (Title)" required>
-    <select id="type" required>
-      <option value="article">ಲೇಖನ | Article</option>
-      <option value="poem">ಕವನ | Poem</option>
-    </select>
-    <textarea id="content" placeholder="ಲೇಖನ ಅಥವಾ ಕವನದ ವಿಷಯ (Content)" rows="6" required></textarea>
-    <button type="submit">ಸಲ್ಲಿಸಿ | Submit</button>
-  </form>
+<h1>✍️ ಲೇಖನಗಳು ಮತ್ತು ಕವನಗಳು | Articles & Poems</h1>
 
-  <div id="articles"></div>
+<!-- Example Author Section -->
+<div class="author-section">
+  <h3>ಡಾ. ರಾಮಕೃಷ್ಣ (Dr. Ramakrishna)</h3>
 
-  <footer>
-    <p>© 2025 Published by Alumni of SKPVN Raichur</p>
-  </footer>
+  <button class="collapsible">📘 Article: ಹಳ್ಳಿಯ ಜೀವನ</button>
+  <div class="content">
+    <pre>
+ಹಳ್ಳಿಯ ಜೀವನವು ಸುಂದರವಾಗಿದೆ. ನೈಸರ್ಗಿಕ ಪರಿಸರ, ಮಾನವೀಯ ಮೌಲ್ಯಗಳು ಮತ್ತು ಸಹಕಾರದ ಮನೋಭಾವನೆ ಇಲ್ಲಿವೆ...
+    </pre>
+  </div>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  <button class="collapsible">📝 Poem: ನನ್ನ ಊರು</button>
+  <div class="content">
+    <pre>
+ನನ್ನ ಊರು ಚಂದದ ಊರು  
+ಅಲ್ಲಿ ನೆನಪಿದೆ ಬಾಲ್ಯದ ಆಟಗಳು...  
+ಜೀವದ ಸಂಗಾತಿಯಂತಿದೆ ಈ ಊರಿನ ಗಾಳಿ.
+    </pre>
+  </div>
+</div>
 
+<!-- Add more authors like below -->
 
-  <script>
+<div class="author-section">
+  <h3>ಸಣ್ಣ ನಾಗಯ್ಯ ಶೆಟ್ಟಿ (Sanna Nagayya Shetty)</h3>
+
+  <button class="collapsible">📘 Article: ಶಿಕ್ಷಣದ ಮಹತ್ವ</button>
+  <div class="content">
+    <pre>
+ಶಿಕ್ಷಣವೇ ಬೆಳಕು. ಇದು ವ್ಯಕ್ತಿಯ ಬೆಳವಣಿಗೆಗೆ ಹಾಗೂ ಸಮಾಜದ ಮುನ್ನಡೆಯಿಗೆ ಅತೀ ಮುಖ್ಯವಾಗಿದೆ...
+    </pre>
+  </div>
+
+  <button class="collapsible">📝 Poem: ಗುರುವನ ಸ್ಮರಣೆ</button>
+  <div class="content">
+    <pre>
+ಗುರು ಎಂಬ ಶ್ರೀಮಂತನು  
+ಜ್ಞಾನದ ಕೊಡುಗೆಯ ಕಾರುಣ್ಯವನು  
+ಆತನ ಸ್ಮರಣೆ ನಮ್ಮನ್ನು ಬೆಳಗಲಿ.
+    </pre>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Published by Alumni of SKPVN Raichur</p>
+</footer>
+
 <script>
-const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxPkR5dJOdq-uX-ncec4GuvDnScpHkgWQPqcrkVINWEkloly0Wf0-IP0Ss7AOgBVq0/exec";
-
-function fetchArticles() {
-  fetch(GOOGLE_SHEET_URL)
-    .then(response => response.json())
-    .then(data => {
-      const container = document.getElementById("articles");
-      container.innerHTML = ''; // clear existing
-
-      const grouped = {};
-      data.forEach(entry => {
-        const author = entry.author || "Unknown";
-        if (!grouped[author]) grouped[author] = [];
-        grouped[author].push(entry);
-      });
-
-      Object.keys(grouped).forEach(author => {
-        const section = document.createElement("div");
-        section.className = "author-section";
-        section.innerHTML = `<h3>${author}</h3>`;
-        grouped[author].forEach(entry => {
-          const button = document.createElement("button");
-          button.className = "collapsible";
-          button.innerHTML = `${entry.type === "poem" ? "📝 Poem" : "📘 Article"}: ${entry.title}`;
-
-          const contentDiv = document.createElement("div");
-          contentDiv.className = "content";
-          contentDiv.innerHTML = `<pre>${entry.content}</pre>`;
-
-          button.addEventListener('click', () => {
-            button.classList.toggle("active");
-            contentDiv.classList.toggle("open");
-          });
-
-          section.appendChild(button);
-          section.appendChild(contentDiv);
-        });
-
-        container.appendChild(section);
-      });
-    })
-    .catch(err => {
-      console.error("❌ Error loading data:", err);
-      alert("⚠️ Unable to fetch data from Google Sheet.");
+  document.querySelectorAll('.collapsible').forEach(button => {
+    const content = button.nextElementSibling;
+    button.addEventListener('click', () => {
+      button.classList.toggle('active');
+      content.classList.toggle('open');
     });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  fetchArticles(); // Load from sheet
-});
+  });
 </script>
-
-
-</script>
-
-
-
 
 </body>
 </html>
