@@ -152,41 +152,59 @@
 
 
   <script>
-window.addEventListener('DOMContentLoaded', () => {
-  fetch("https://script.google.com/macros/s/AKfycbwz-oSoqaQOZEvVkfpjHcdXZRNB-nexNJMiZjhF1H8hLg3ZOdGndL20FMaOiSeFq7qJ/exec")
-    .then(res => res.json())
+<script>
+const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbxPkR5dJOdq-uX-ncec4GuvDnScpHkgWQPqcrkVINWEkloly0Wf0-IP0Ss7AOgBVq0/exec";
+
+function fetchArticles() {
+  fetch(GOOGLE_SHEET_URL)
+    .then(response => response.json())
     .then(data => {
-      const container = document.getElementById('articles');
-      const authors = {};
+      const container = document.getElementById("articles");
+      container.innerHTML = ''; // clear existing
 
+      const grouped = {};
       data.forEach(entry => {
-        if (!authors[entry.author]) {
-          const section = document.createElement('div');
-          section.className = 'author-section';
-          section.setAttribute('data-author', entry.author);
-          section.innerHTML = `<h3>${entry.author} <span class="article-tag">Author</span></h3>`;
-          authors[entry.author] = section;
-          container.appendChild(section);
-        }
-
-        const button = document.createElement('button');
-        button.className = 'collapsible';
-        button.innerHTML = `${entry.type === 'article' ? '📘 Essay' : '📝 Poem'}: ${entry.title} <span class="article-tag">${entry.type === 'article' ? 'ಲೇಖನ | Article' : 'ಕವನ | Poem'}</span>`;
-        
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'content';
-        contentDiv.innerHTML = `<pre>${entry.content}</pre>`;
-
-        authors[entry.author].appendChild(button);
-        authors[entry.author].appendChild(contentDiv);
-
-        button.addEventListener('click', () => {
-          button.classList.toggle('active');
-          contentDiv.classList.toggle('open');
-        });
+        const author = entry.author || "Unknown";
+        if (!grouped[author]) grouped[author] = [];
+        grouped[author].push(entry);
       });
+
+      Object.keys(grouped).forEach(author => {
+        const section = document.createElement("div");
+        section.className = "author-section";
+        section.innerHTML = `<h3>${author}</h3>`;
+        grouped[author].forEach(entry => {
+          const button = document.createElement("button");
+          button.className = "collapsible";
+          button.innerHTML = `${entry.type === "poem" ? "📝 Poem" : "📘 Article"}: ${entry.title}`;
+
+          const contentDiv = document.createElement("div");
+          contentDiv.className = "content";
+          contentDiv.innerHTML = `<pre>${entry.content}</pre>`;
+
+          button.addEventListener('click', () => {
+            button.classList.toggle("active");
+            contentDiv.classList.toggle("open");
+          });
+
+          section.appendChild(button);
+          section.appendChild(contentDiv);
+        });
+
+        container.appendChild(section);
+      });
+    })
+    .catch(err => {
+      console.error("❌ Error loading data:", err);
+      alert("⚠️ Unable to fetch data from Google Sheet.");
     });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  fetchArticles(); // Load from sheet
 });
+</script>
+
 
 </script>
 
