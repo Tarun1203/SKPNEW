@@ -13,10 +13,11 @@
     }
 
     header, footer {
-      background: #8e1515;
+      background: linear-gradient(to right, #8e1515, #a83232);
       color: white;
       padding: 1rem;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .section {
@@ -29,22 +30,27 @@
       height: auto;
       display: block;
       margin: 1rem auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     .horizontal-scroll-container {
-      background: #fff2dc;
+      background: #fdf3e7;
       color: #8e1515;
       font-weight: bold;
       white-space: nowrap;
       overflow: hidden;
       position: relative;
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-top: 2px solid #e0c1a3;
+      border-bottom: 2px solid #e0c1a3;
     }
 
     .horizontal-scroll {
       display: inline-block;
-      animation: scroll-left 30s linear infinite;
+      animation: scroll-left 25s linear infinite;
     }
 
     @keyframes scroll-left {
@@ -64,16 +70,19 @@
       text-decoration: none;
       font-weight: bold;
       cursor: pointer;
+      transition: color 0.3s;
     }
 
     nav a:hover {
       text-decoration: underline;
+      color: #ffd700;
     }
 
     iframe {
       width: 100%;
       height: 90vh;
       border: none;
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -87,7 +96,7 @@
 
   <div class="horizontal-scroll-container">
     <div class="horizontal-scroll" id="bulletin-messages">
-      <!-- Messages will be dynamically inserted -->
+      💐 2025 ರ ಅಲಮ್ನಿ ಸ್ಮೃತಿ ಸಂಚಿಕೆ ಕಾರ್ಯಕ್ರಮ ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಂಡಿದೆ. ಈ ಸ್ಮರಣೀಯ ಸಂದರ್ಭದಲ್ಲಿ ಪಾಲ್ಗೊಂಡ ಎಲ್ಲ ಅತಿಥಿಗಳು ಮತ್ತು ಹಳೆಯ ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಹೃತ್ಪೂರ್ವಕ ಧನ್ಯವಾದಗಳು! 💐 Thank you to everyone who participated and made the SKPVN 2025 Alumni Meet a grand success.
     </div>
   </div>
 
@@ -95,7 +104,6 @@
     <img src="images/hostel.jpg" alt="Hostel Photo" class="image-center" />
   </section>
 
-  <!-- ✅ Bilingual Navigation with iframe trigger -->
   <nav>
     <a onclick="loadPage('home.html')">🏠 ಮನೆ | Home</a>
     <a onclick="loadPage('hostels.html')">🏨 ಹಾಸ್ಟೆಲ್ ವಿವರ | Hostel Details</a>
@@ -110,17 +118,6 @@
   <iframe id="content-frame" src="home.html"></iframe>
 
   <script>
-    const messages = [
-      { en: "🎉 Welcome to the 2025 Alumni Meet", kn: "🎉 2025 ಪುರಾತನ ವಿದ್ಯಾರ್ಥಿಗಳ ಸಮಾವೇಶಕ್ಕೆ ಸ್ವಾಗತ" },
-      { en: "📍 Venue: G.P.S Residency & Restaurant - Mantralaya", kn: "📍 ಸ್ಥಳ: ಜಿ.ಪಿ.ಎಸ್ ರೆಸಿಡೆನ್ಸಿ, ಮಂತ್ರಾಲಯ" },
-      { en: "📞 Contact: 7204071733", kn: "📞 ಸಂಪರ್ಕಿಸಿ: 7204071733" },
-      { en: "🙏 Jai Vasavi Matha", kn: "🙏 ಜಯ ವಾಸವಿ ಮಾತೆ" },
-      { en: "🎶 Kanikaparameshwari Bhajane will be sung live!", kn: "🎶 ಕನಿಕಾಪರಮೇಶ್ವರಿ ಭಜನೆ ನೇರವಾಗಿ ಹಾಡಲಾಗುತ್ತದೆ!" },
-      { en: "💌 Designed by Tarun Chettam", kn: "💌 ವಿನ್ಯಾಸ: ತರುಣ್ ಚೆಟ್ಟಂ" }
-    ];
-    const container = document.getElementById("bulletin-messages");
-    container.innerHTML = messages.map(msg => `${msg.en} - ${msg.kn}`).join(" • ");
-
     function loadPage(page) {
       document.getElementById("content-frame").src = page;
     }
